@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+
+
+<head>
+<meta charset="UTF-8">
+<script src="js/nexusUI.js"></script>
+<script src="js/Tone.js"></script>
+<link rel="stylesheet" type="text/css" href="css/DreamWeave.css">
+<title>Tune</title>
+</head>
+<script>
+    function whenLoad() {
+       		function didOpen(){
+            		console.log("Mic Loaded");
+            }
+        micIn = new Tone.Microphone();
+        micIn.open(didOpen);
+        console.log("Mic opened -");
+    }
+</script>
+<body onload="whenLoad()">
+    <div id="wrapper">
+        <div id="settings" align="center">
+            
+            <input type="button" class="LeftButton" id="MuteButton" value="Mute Mic" onClick="muteButton()"><input type="button" class="MidButton" value="Tuner" onClick="StartTuner()"><input type="button" class="MidButton" value="Game" onClick="StartGame()"><input type="button" class="RightButton" value="Mute Tone" onClick="">
+        </div>
+        <br>
+   <!--     <div id="leftborder"><font size="16">Log</font><textarea id="sessionLog" class="logText"></textarea></div> -->
+        <div id="appwrapper">
+            <div id="tuner">
+                <img src="pix/gtarhead.jpg" id="gtarhead" class="tunerhead">
+                    <select id="tuningDropbox">
+                        <option value="1">Standard</option>
+                        <option value="2">Open Repetitive</option>
+                        <option value="3">Dropped</option>
+                        <option value="4">Four n Twenty</option>
+                    </select>
+                    <div id="string1"
+                         class="noteboxes"
+                         onClick="playNote(0)">
+                            <input type="button"
+                                   class="NoteUp"
+                                   id="String1Up"
+                                   value="+"
+                                   onClick="noPropagation();NoteChange(1, 1)">
+                            <span id="string1note">E</span>
+                            <input type="button"
+                                   class="NoteDown"
+                                   id="String1Down"
+                                   value="-"
+                                   onClick="noPropagation();NoteChange(1, -1)">
+                    </div>
+                    <div id="string2" 
+                         class="noteboxes" 
+                         onClick="playNote(1)">
+                            <input type="button" 
+                                   class="NoteUp" 
+                                   id="String2Up" 
+                                   value="+" 
+                                   onClick="noPropagation();NoteChange(2, 1)">
+                            <span id="string2note">A</span>
+                            <input type="button" 
+                                   class="NoteDown" 
+                                   id="String2Down" 
+                                   value="-" 
+                                   onClick="noPropagation();NoteChange(2, -1)">
+                    </div>
+                    <div id="string3" 
+                         class="noteboxes" 
+                         onClick="playNote(2)">
+                            <input type="button" 
+                                   class="NoteUp" 
+                                   id="String3Up" 
+                                   value="+" 
+                                   onClick="noPropagation();NoteChange(3, 1)">
+                            <span id="string3note">D</span>
+                            <input type="button" 
+                                   class="NoteDown" 
+                                   id="String3Down" 
+                                   value="-" 
+                                   onClick="noPropagation();NoteChange(3, -1)">
+                    </div>
+                    <div id="string4" 
+                         class="noteboxes" 
+                         onClick="playNote(3)">
+                            <input type="button" 
+                                   class="NoteUp" 
+                                   id="String4Up" 
+                                   value="+" 
+                                   onClick="noPropagation();NoteChange(4, 1)">
+                            <span id="string4note">G</span>
+                            <input type="button" 
+                                   class="NoteDown" 
+                                   id="String4Down" 
+                                   value="-" 
+                                   onClick="noPropagation();NoteChange(4, -1)">
+                    </div>
+                    <div id="string5" 
+                         class="noteboxes" 
+                         onClick="playNote(4)">
+                            <input type="button" 
+                                   class="NoteUp" 
+                                   id="String5Up" 
+                                   value="+" 
+                                   onClick="noPropagation();NoteChange(5, 1)">
+                            <span id="string5note">B</span>
+                            <input type="button" 
+                                   class="NoteDown" 
+                                   id="String5Down" 
+                                   value="-" 
+                                   onClick="noPropagation();NoteChange(5, -1)">
+                    </div>
+                    <div id="string6" 
+                         class="noteboxes" 
+                         onClick="playNote(5)">
+                              <input type="button" 
+                                     class="NoteUp" 
+                                     id="String6Up" 
+                                     value="+" 
+                                     onClick="noPropagation();NoteChange(6, 1)">
+                              <span id="string6note">E</span>
+                              <input type="button" 
+                                     class="NoteDown" 
+                                     id="String6Down" 
+                                     value="-" 
+                                     onClick="noPropagation();NoteChange(6, -1)">
+                    </div>
+            </div>
+            <div id="tunegame"> The is the game div. 
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/mpc2js.js"></script>
+</html>
+
+
+
+<!-- BUG FIXES N STUFF ----
+ 
+001     : Changing the text in the string1-6 divs removed the buttons in the div
+Cause   : buttons are inside divs in HTML, changing the text removed the input tags
+Solution: Place note text inside <span> tags and change text inside these.
